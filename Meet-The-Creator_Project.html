@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Tab Title -->
+    <title>Meet the Creator</title>
+
+    <!-- Favicon (Cloud Emoji) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☁️</text></svg>">
+
+    <!-- PyScript -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2026.7.3/core.css">
+    <script type="module" src="https://pyscript.net/releases/2026.7.3/core.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+    
+    <style>
+        /* Body */
+        body {
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            background-color: #f0f8fe;
+        }
+
+        /* Background image */
+        .intro {
+            min-height: 100vh;
+            background-image: url("1.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Hobbies and Dream section */
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 30px;
+            max-width: 650px;
+            margin: -90px auto 0;
+            margin-bottom: 100px;
+        }
+
+        /* Box */
+        .box {
+            width: 350px;
+            min-height: 200px;
+            padding: 20px;
+            border: 2px solid #a6cbed;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 4px 12px rgba(118, 165, 219, 0.15);
+        }
+
+        /* Text labeling the hobbies */
+        h2 {
+            color: #447fc6;
+            text-align: center;
+        }
+
+        /* Btn for Hobbies */
+        .hobby-button {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 25px;
+            background-color: #76a5db;
+            color: white;
+            font-family: 'Nunito', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Btn change color when mouse over btn*/
+        .hobby-button:hover {
+            background-color: #447fc6;
+        }
+
+        /* Box containing the info */
+        .hobby-info {
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 15px;
+            background-color: #e9f3fa;
+        }
+
+        /* Images inside the info box */
+        .hobby-info img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: absolute;
+            top: 20px;
+            left: 25px;
+            z-index: 10;
+        }
+
+        .navbar a {
+            display: inline-block;
+            padding: 10px 22px;
+            border-radius: 25px;
+            background-color: rgba(118, 165, 219, 0.85);
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #447fc6;
+        }
+
+        /* Footer */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            font-family: 'Nunito', sans-serif;
+            text-align: center;
+            color: #696b6e;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Footer Text */
+        footer p {
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Background -->
+    <section class="intro"></section>
+
+<!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="Main.html">← Back to Main Menu</a>
+    </nav>
+
+<!-- Hobbies and Dream section -->
+    <section class="details">
+
+        <div class="container">
+
+            <!-- Hobbies -->
+            <div class="box">
+                <!-- Swimming -->
+                <div>
+                    <button class="hobby-button"
+                            onclick="toggleHobby('swimming')">
+                        Swimming
+                    </button>
+
+                    <div class="hobby-info" id="swimming" hidden>
+                        <!-- Description -->
+                        <p>
+                            I enjoy swimming because it is fun and refreshing.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Taekwondo -->
+                <div>
+                    <button class="hobby-button"
+                            onclick="toggleHobby('taekwondo')">
+                        Taekwondo
+                    </button>
+
+                    <div class="hobby-info" id="taekwondo" hidden>
+                        <!-- Image for Taekwondo -->
+                        <img src="taekwondo.jpg" alt="Taekwondo">
+                        <!-- Description -->
+                        <p>
+                            I enjoy Taekwondo because it helps me develop discipline,
+                            confidence, and self-defense skills.
+                        </p>
+                        <p>
+                            I am currently a High Red belt and I am part of the Poomsae team of ATA (Ampongan Taekwondo Academy).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Arts -->
+                <div>
+                    <button class="hobby-button"
+                            onclick="toggleHobby('arts')">
+                        Arts
+                    </button>
+
+                    <div class="hobby-info" id="arts" hidden>
+                        <!-- Description -->
+                        <p>
+                            I enjoy making art because it allows me to express
+                            my creativity and imagination.
+                        </p>
+                        <p>
+                            I do all sorts of arts like sewing, macrame, painting, and drawing. and any sorts of arts that I can do. I also enjoy making crafts and DIY projects.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Watching -->
+                <div>
+                    <button class="hobby-button"
+                            onclick="toggleHobby('watching')">
+                        Watching
+                    </button>
+
+                    <div class="hobby-info" id="watching" hidden>
+                        <!-- Description -->
+                        <p>
+                            I love watching animes because they provide me with entertainment and inspiration.
+                        </p>
+                        <p>
+                            Some of my favorite animes.
+                        </p>
+                        <!-- Images of favorite animes -->
+                        <img src="nana.jpg" alt="Watching">
+                        <img src="Ouran Highschool.jpg" alt="Watching">
+                        <img src="The Ramparts of Ice.jpg" alt="Watching">
+                        <p>Ive got to much to list all of them!</p>
+                    </div>
+                </div>
+
+                <!-- Reading -->
+                <div>
+                    <button class="hobby-button"
+                            onclick="toggleHobby('reading')">
+                        Reading
+                    </button>
+
+                    <div class="hobby-info" id="reading" hidden>
+                        <!-- Description -->
+                        <p>
+                            I love reading mangas and manhwas because they provide me with entertainment and inspiration.
+                        </p>
+                        <p>
+                            Some of my favorite manga/manhwas.
+                        </p>
+                        <!-- Images of favorite manga/manhwas -->
+                        <img src="the-symbiotic-relationship-between-the-rabbit-and-the-black-panther.jpg" alt="Reading">
+                        <img src="The Daughter of the Archmage.jpeg" alt="Reading">
+                        <img src="WMMAP.jpg" alt="Reading">
+                        <p>Ive got to much to list all of them!</p>
+                    </div>
+                </div>
+
+                <!-- Gaming -->
+                <div>
+                    <button class="hobby-button"
+                            onclick="toggleHobby('gaming')">
+                        Gaming
+                    </button>
+
+                    <div class="hobby-info" id="gaming" hidden>
+                        <!-- Description -->
+                        <p>
+                            I enjoy gaming because it is fun and challenging.
+                        </p>
+                        <p>
+                            Some of my favorite games are Genshin Impact and
+                            Cookie Run Kingdom. And other types >-<
+                        </p>
+                        <!-- Images of favorite games -->
+                        <img src="Genshin.jpg" alt="Gaming">
+                        <img src="CRK.jpg" alt="Gaming">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Dream -->
+            <div class="box">
+                <p>
+                    I have yet to think of what I want to be in the future, but I am sure I want to be a kind, helpful, and loving person. Who can shine some light into someones life even if I may be at darkness myself. I want to be a person who can make a difference in the world, no matter how small it may be. I want to be a person who can inspire others to be their best selves and to never give up on their dreams.
+                </p>
+                <p style="text-align: center; font-size: 10px; font-weight: bold;">
+                    𓆩✧𓆪─────── ☁︎ ───────𓆩✧𓆪
+                </p>
+            </div>
+
+        </div> 
+
+    </section>
+
+<!-- Script so I can hide the info -->
+    <script>
+        function toggleHobby(id) {
+            const hobby = document.getElementById(id);
+            hobby.hidden = !hobby.hidden;
+        }
+    </script>
+
+<!-- Footer -->
+    <footer>
+        <p>&copy; 2026 ICT - Project - 2nd Quarter</p>
+    </footer>
+
+<!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Python -->
+    <script type="py" src="main.py"></script>
+
+</body>
+</html>
