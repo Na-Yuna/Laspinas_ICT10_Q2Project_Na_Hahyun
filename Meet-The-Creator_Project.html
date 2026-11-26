@@ -1,327 +1,459 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Tab Title -->
+    <!-- Tab Title -->
     <title>Meet the Creator</title>
 
-<!-- Favicon (Cloud Emoji) -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☁️</text></svg>">
+    <!-- Favicon (Cloud Emoji) -->
+    <link rel="icon" href="data:image/svg+xml,*<*&#x73;vg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22>*<*&#x74;ext y=%22.9em%22 font-size=%2290%22>☁&#xFE0F;*<*/text>*<*/svg>">
 
-<!-- PyScript -->
-    <link rel="stylesheet" href="https://pyscript.net/releases/2026.7.3/core.css">
-    <script type="module" src="https://pyscript.net/releases/2026.7.3/core.js"></script>
-
-<!-- Google Fonts -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-<!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet">
-    
+
     <style>
+
         /* Body */
         body {
-            margin: 0;
             font-family: 'Nunito', sans-serif;
-            background-color: #f0f8fe;
-        }
-
-        /* Background image */
-        .intro {
+            margin: 0;
             min-height: 100vh;
-            background-image: url("1.png");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background: #202c45;
+            color: white;
+            scroll-behavior: smooth;
         }
 
-        /* Hobbies and Dream section */
-        .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 30px;
-            max-width: 650px;
-            margin: -90px auto 0;
-            margin-bottom: 100px;
+        /* Video Background */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            pointer-events: none;
         }
 
-        /* Box */
-        .box {
-            width: 350px;
-            min-height: 200px;
-            padding: 20px;
-            border: 2px solid #a6cbed;
-            border-radius: 20px;
-            background-color: rgba(255, 255, 255, 0.92);
-            box-shadow: 0 4px 12px rgba(118, 165, 219, 0.15);
+        /* Background Overlay */
+        .background-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(17, 30, 55, 0.35);
+            z-index: -1;
+            pointer-events: none;
         }
 
-        /* Text labeling the hobbies */
-        h2 {
+        /* Navbar */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(12px);
+            padding: 12px 35px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Navbar Brand */
+        .navbar-brand {
+            font-size: 21px;
+            font-weight: 800;
             color: #447fc6;
-            text-align: center;
         }
 
-        /* Btn for Hobbies */
+        .navbar-brand:hover {
+            color: #315f99;
+        }
+
+        /* Navbar Links */
+        .navbar .nav-link {
+            color: #5b6169;
+            font-size: 14px;
+            font-weight: 700;
+            margin: 0 8px;
+            transition: color 0.2s ease;
+        }
+
+        .navbar .nav-link:hover {
+            color: #447fc6;
+        }
+
+        /* Go Back Link */
+        .navbar .back-link {
+            color: #447fc6;
+        }
+
+        /* Main Heading */
+        .main-heading {
+            text-align: center;
+            padding: 65px 20px 35px;
+        }
+
+        .main-heading h1 {
+            font-size: clamp(35px, 5vw, 55px);
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        .main-heading p {
+            font-size: 17px;
+            font-weight: 600;
+            color: #dceaff;
+        }
+
+        /* Content Sections */
+        .content-section {
+            width: 900px;
+            max-width: 90%;
+            margin: 30px auto;
+            padding: 35px;
+            background: rgba(255, 255, 255, 0.88);
+            color: #414b5c;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+            scroll-margin-top: 100px;
+        }
+
+        .content-section h2 {
+            color: #447fc6;
+            font-size: 27px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .content-section p {
+            font-size: 16px;
+            line-height: 1.8;
+            font-weight: 600;
+        }
+
+        /* Profile */
+        .profile-picture {
+            width: 170px;
+            height: 220px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* Hobby Buttons */
         .hobby-button {
             width: 100%;
-            padding: 12px;
-            margin: 8px 0;
+            padding: 14px 18px;
+            margin-bottom: 12px;
             border: none;
-            border-radius: 25px;
-            background-color: #76a5db;
-            color: white;
+            border-radius: 12px;
+            background: #e5effb;
+            color: #447fc6;
             font-family: 'Nunito', sans-serif;
             font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
+            font-weight: 800;
+            text-align: left;
+            transition: 0.2s ease;
         }
 
-        /* Btn change color when mouse over btn*/
         .hobby-button:hover {
-            background-color: #447fc6;
-        }
-
-        /* Box containing the info */
-        .hobby-info {
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 15px;
-            background-color: #e9f3fa;
-        }
-
-        /* Images inside the info box */
-        .hobby-info img {
-            width: 100%;
-            border-radius: 10px;
-        }
-
-        /* Navigation Bar */
-        .navbar {
-            position: absolute;
-            top: 20px;
-            left: 25px;
-            z-index: 10;
-        }
-
-        .navbar a {
-            display: inline-block;
-            padding: 10px 22px;
-            border-radius: 25px;
-            background-color: rgba(118, 165, 219, 0.85);
+            background: #76a5db;
             color: white;
-            font-size: 15px;
-            font-weight: bold;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
         }
 
-        .navbar a:hover {
-            background-color: #447fc6;
+        /* Hobby Information */
+        .hobby-info {
+            display: none;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #f4f7fc;
+            border-radius: 12px;
+        }
+
+        .hobby-info img {
+            max-width: 100%;
+            width: 180px;
+            border-radius: 12px;
+            margin: 10px;
         }
 
         /* Footer */
         footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            font-family: 'Nunito', sans-serif;
             text-align: center;
+            padding: 12px;
+            margin-top: 45px;
             color: #696b6e;
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.75);
         }
 
-        /* Footer Text */
         footer p {
             margin: 0;
-            font-family: 'Nunito', sans-serif;
             font-size: 14px;
+            font-weight: 600;
         }
+
+        /* Responsive Design */
+        @media (max-width: 991px) {
+
+            .navbar {
+                padding: 12px 20px;
+            }
+
+            .navbar .nav-link {
+                margin: 5px 0;
+            }
+
+        }
+
+        @media (max-width: 576px) {
+
+            .main-heading {
+                padding-top: 40px;
+            }
+
+            .content-section {
+                padding: 22px;
+            }
+
+            .content-section h2 {
+                font-size: 23px;
+            }
+
+            .content-section p {
+                font-size: 14px;
+            }
+
+            .profile-picture {
+                width: 140px;
+                height: 185px;
+            }
+
+        }
+
     </style>
 </head>
 
 <body>
 
-<!-- Background -->
-    <section class="intro"></section>
+    <!-- Video Background -->
+    <video class="video-background" autoplay muted loop playsinline>
+        <source src="Pretty bg.mp4" type="video/mp4">
+    </video>
 
-<!-- Navigation Bar -->
-    <nav class="navbar">
-        <a href="index.html">← Back to Main Menu</a>
+    <!-- Background Overlay -->
+    <div class="background-overlay"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg">
+
+        <div class="container-fluid">
+
+            <!-- Brand -->
+            <a class="navbar-brand" href="#top">
+                ☁ Meet the Creator
+            </a>
+
+            <!-- Mobile Toggle -->
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarMenu"
+                    aria-controls="navbarMenu"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <!-- Navigation Links -->
+            <div class="collapse navbar-collapse" id="navbarMenu">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">
+                            About Me
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hobbies">
+                            Hobbies
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#dreams">
+                            Dreams
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link back-link" href="Homepage.html">
+                            Go Back →
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
     </nav>
 
-<!-- Hobbies and Dream section -->
-    <section class="details">
+    <!-- Main Heading -->
+    <header class="main-heading" id="top">
+        <h1>Meet the Creator</h1>
+        <p>Get to know me!</p>
+    </header>
 
-        <div class="container">
+    <!-- About Me Section -->
+    <section class="content-section" id="about">
 
-            <!-- Hobbies -->
-            <div class="box">
-                <!-- Swimming -->
-                <div>
-                    <button class="hobby-button"
-                            onclick="toggleHobby('swimming')">
-                        Swimming
-                    </button>
+        <h2>About Me</h2>
 
-                    <div class="hobby-info" id="swimming" hidden>
-                        <!-- Description -->
-                        <p>
-                            I enjoy swimming because it is fun and refreshing.
-                        </p>
-                    </div>
-                </div>
+        <div class="text-center">
+            <img src="ME.jpg" alt="My Profile Picture"
+                 class="profile-picture">
+            <h3>Na Hahyun</h3>
+        </div>
 
-                <!-- Taekwondo -->
-                <div>
-                    <button class="hobby-button"
-                            onclick="toggleHobby('taekwondo')">
-                        Taekwondo
-                    </button>
-
-                    <div class="hobby-info" id="taekwondo" hidden>
-                        <!-- Image for Taekwondo -->
-                        <img src="taekwondo.jpg" alt="Taekwondo">
-                        <!-- Description -->
-                        <p>
-                            I enjoy Taekwondo because it helps me develop discipline,
-                            confidence, and self-defense skills.
-                        </p>
-                        <p>
-                            I am currently a High Red belt and I am part of the Poomsae team of ATA (Ampongan Taekwondo Academy).
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Arts -->
-                <div>
-                    <button class="hobby-button"
-                            onclick="toggleHobby('arts')">
-                        Arts
-                    </button>
-
-                    <div class="hobby-info" id="arts" hidden>
-                        <!-- Description -->
-                        <p>
-                            I enjoy making art because it allows me to express
-                            my creativity and imagination.
-                        </p>
-                        <p>
-                            I do all sorts of arts like sewing, macrame, painting, and drawing. and any sorts of arts that I can do. I also enjoy making crafts and DIY projects.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Watching -->
-                <div>
-                    <button class="hobby-button"
-                            onclick="toggleHobby('watching')">
-                        Watching
-                    </button>
-
-                    <div class="hobby-info" id="watching" hidden>
-                        <!-- Description -->
-                        <p>
-                            I love watching animes because they provide me with entertainment and inspiration.
-                        </p>
-                        <p>
-                            Some of my favorite animes.
-                        </p>
-                        <!-- Images of favorite animes -->
-                        <img src="nana.jpg" alt="Watching">
-                        <img src="Ouran Highschool.jpg" alt="Watching">
-                        <img src="The Ramparts of Ice.jpg" alt="Watching">
-                        <p>Ive got to much to list all of them!</p>
-                    </div>
-                </div>
-
-                <!-- Reading -->
-                <div>
-                    <button class="hobby-button"
-                            onclick="toggleHobby('reading')">
-                        Reading
-                    </button>
-
-                    <div class="hobby-info" id="reading" hidden>
-                        <!-- Description -->
-                        <p>
-                            I love reading mangas and manhwas because they provide me with entertainment and inspiration.
-                        </p>
-                        <p>
-                            Some of my favorite manga/manhwas.
-                        </p>
-                        <!-- Images of favorite manga/manhwas -->
-                        <img src="the-symbiotic-relationship-between-the-rabbit-and-the-black-panther.jpg" alt="Reading">
-                        <img src="The Daughter of the Archmage.jpeg" alt="Reading">
-                        <img src="WMMAP.jpg" alt="Reading">
-                        <p>Ive got to much to list all of them!</p>
-                    </div>
-                </div>
-
-                <!-- Gaming -->
-                <div>
-                    <button class="hobby-button"
-                            onclick="toggleHobby('gaming')">
-                        Gaming
-                    </button>
-
-                    <div class="hobby-info" id="gaming" hidden>
-                        <!-- Description -->
-                        <p>
-                            I enjoy gaming because it is fun and challenging.
-                        </p>
-                        <p>
-                            Some of my favorite games are Genshin Impact and
-                            Cookie Run Kingdom. And other types >-<
-                        </p>
-                        <!-- Images of favorite games -->
-                        <img src="Genshin.jpg" alt="Gaming">
-                        <img src="CRK.jpg" alt="Gaming">
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Dream -->
-            <div class="box">
-                <p>
-                    I have yet to think of what I want to be in the future, but I am sure I want to be a kind, helpful, and loving person. Who can shine some light into someones life even if I may be at darkness myself. I want to be a person who can make a difference in the world, no matter how small it may be. I want to be a person who can inspire others to be their best selves and to never give up on their dreams.
-                </p>
-                <p style="text-align: center; font-size: 10px; font-weight: bold;">
-                    𓆩✧𓆪─────── ☁︎ ───────𓆩✧𓆪
-                </p>
-            </div>
-
-        </div> 
+        <p>
+            Hello! I'm Na Hahyun. Welcome to my little space!
+            Here, you'll get to know more about me, my hobbies,
+            interests, and dreams.
+        </p>
 
     </section>
 
-<!-- Script so I can hide the info -->
-    <script>
-        function toggleHobby(id) {
-            const hobby = document.getElementById(id);
-            hobby.hidden = !hobby.hidden;
-        }
-    </script>
+    <!-- Hobbies Section -->
+    <section class="content-section" id="hobbies">
 
-<!-- Footer -->
+        <h2>My Hobbies and Interests</h2>
+
+        <p>Click on each hobby to learn more about it!</p>
+
+        <button class="hobby-button" onclick="toggleHobby('swimming')">
+            Swimming
+        </button>
+        <div class="hobby-info" id="swimming">
+            <p>
+                Swimming is one of my hobbies. It is an activity
+                that I enjoy because it helps me relax and have fun.
+            </p>
+        </div>
+
+        <button class="hobby-button" onclick="toggleHobby('taekwondo')">
+            Taekwondo
+        </button>
+        <div class="hobby-info" id="taekwondo">
+            <img src="taekwondo.jpg" alt="Taekwondo">
+            <p>
+                Taekwondo is a martial art that teaches discipline,
+                focus, and perseverance.
+            </p>
+        </div>
+
+        <button class="hobby-button" onclick="toggleHobby('arts')">
+            Arts
+        </button>
+        <div class="hobby-info" id="arts">
+            <p>
+                I enjoy creative activities and expressing ideas
+                through art.
+            </p>
+        </div>
+
+        <button class="hobby-button" onclick="toggleHobby('watching')">
+            Watching
+        </button>
+        <div class="hobby-info" id="watching">
+            <img src="nana.jpg" alt="Nana">
+            <img src="Ouran Highschool.jpg" alt="Ouran High School Host Club">
+            <p>
+                I enjoy watching shows and stories during my free time.
+            </p>
+        </div>
+
+        <button class="hobby-button" onclick="toggleHobby('reading')">
+            Reading
+        </button>
+        <div class="hobby-info" id="reading">
+            <img src="The Ramparts of Ice.jpg" alt="The Ramparts of Ice">
+            <img src="the-symbiotic-relationship-between-the-rabbit-and-the-black-panther.jpg"
+                 alt="The Symbiotic Relationship Between the Rabbit and the Black Panther">
+            <img src="The Daughter of the Archmage.jpeg"
+                 alt="The Daughter of the Archmage">
+            <img src="WMMAP.jpg" alt="Who Made Me a Princess">
+            <p>
+                I enjoy reading stories and exploring different worlds
+                through books and webtoons.
+            </p>
+        </div>
+
+        <button class="hobby-button" onclick="toggleHobby('gaming')">
+            Gaming
+        </button>
+        <div class="hobby-info" id="gaming">
+            <img src="Genshin.jpg" alt="Genshin Impact">
+            <img src="CRK.jpg" alt="Cookie Run Kingdom">
+            <p>
+                Gaming is another way I enjoy spending my free time.
+            </p>
+        </div>
+
+    </section>
+
+    <!-- Dreams Section -->
+    <section class="content-section" id="dreams">
+
+        <h2>My Dreams</h2>
+
+        <p>
+            I have yet to think of what I want to be in the future,
+            but I am sure I want to be a kind, helpful, and loving person.
+            Who can shine some light into someones life even if I may be
+            at darkness myself. I want to be a person who can make a
+            difference in the world, no matter how small it may be.
+            I want to be a person who can inspire others to be their
+            best selves and to never give up on their dreams.
+        </p>
+
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 ICT - Project - 2nd Quarter</p>
+        <p>© 2026 ICT - Project - 2nd Quarter</p>
     </footer>
 
-<!-- Bootstrap JavaScript -->
+    <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Python -->
-    <script type="py" src="main.py"></script>
+    <!-- Hobby Toggle -->
+    <script>
+
+        function toggleHobby(id) {
+
+            var hobby = document.getElementById(id);
+
+            if (hobby.style.display === "block") {
+                hobby.style.display = "none";
+            } else {
+                hobby.style.display = "block";
+            }
+
+        }
+
+    </script>
 
 </body>
 </html>
