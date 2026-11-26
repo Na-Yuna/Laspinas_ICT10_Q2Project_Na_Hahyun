@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Tab Title -->
-    <title>Element Checker</title>
+    <title>Student Showcase | Element Checker</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="BLUE TEST TUBE LOGO.png">
@@ -24,6 +24,7 @@
           rel="stylesheet">
 
     <style>
+
         /* Body */
         body {
             margin: 0;
@@ -36,29 +37,30 @@
             padding: 90px 15px 65px;
         }
 
-        /* Navigation Bar Btn Type*/
+        /* Navbar */
         .navbar {
-            position: absolute;
-            top: 20px;
-            left: 25px;
+            background-color: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(12px);
+            padding: 12px 35px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             z-index: 10;
         }
 
-        .navbar a {
-            display: inline-block;
-            padding: 10px 22px;
-            border-radius: 25px;
-            background-color: rgba(118, 165, 219, 0.85);
-            color: white;
-            font-size: 15px;
-            font-weight: bold;
+        /* Navbar Link */
+        .navbar .nav-link {
+            color: #5b6169;
+            font-size: 14px;
+            font-weight: 700;
             text-decoration: none;
-            transition: background-color 0.3s ease;
+            transition: color 0.2s ease;
         }
 
-        /* Change Navbar Btn Color on Hover */
-        .navbar a:hover {
-            background-color: #447fc6;
+        .navbar .nav-link:hover {
+            color: #447fc6;
         }
 
         /* Main Container */
@@ -187,14 +189,51 @@
             margin: 0;
             font-size: 13px;
         }
+
+        /* Responsive Design */
+        @media (max-width: 991px) {
+
+            .navbar {
+                padding: 12px 20px;
+            }
+
+        }
+
+        @media (max-width: 576px) {
+
+            .navbar {
+                padding: 12px 15px;
+            }
+
+            #verification {
+                padding: 7px;
+            }
+
+            .card-body {
+                padding: 20px !important;
+            }
+
+        }
+
     </style>
 </head>
 
 <body>
 
     <!-- Navigation Bar -->
-    <nav class="navbar">
-        <a href="Homepage.html">← Back to Main Menu</a>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+
+            <!-- Back to Main Menu -->
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="Homepage.html">
+                        Back to Homepage →
+                    </a>
+                </li>
+            </ul>
+
+        </div>
     </nav>
 
     <!-- Main Container -->
